@@ -15,8 +15,10 @@ through the user-assigned `ol-shared-foundation-mi` workload identity, then read
 Cloudflare provider consumes `CLOUDFLARE_API_TOKEN` directly.
 
 The configuration creates DNS-only GitHub Pages apex A/AAAA records, `www` CNAME, and an optional
-persistent organization-verification TXT record. Do not enable Cloudflare proxying, wildcard DNS,
-or replace the backend key with another workload's state.
+persistent organization-verification TXT record. The `dns-production` environment stores the
+public challenge as `PAGES_VERIFICATION`; the workflow maps it to Terraform's
+`github_pages_verification` input. Do not enable Cloudflare proxying, wildcard DNS, or replace the
+backend key with another workload's state.
 
 ## Source updates
 

@@ -23,6 +23,8 @@ zone and intentionally keeps GitHub Pages records DNS-only (`proxied = false`).
 
 GitHub organization domain verification is a one-time owner bootstrap. Add
 `spiceframework.dev` under the `spice-framework` organization Pages settings,
-then pass the displayed challenge temporarily as
-`-var github_pages_verification=...`. Keep the resulting TXT record in state
-after GitHub reports the domain verified. Wildcard records are not used.
+then store the displayed public challenge as the `PAGES_VERIFICATION` variable
+in the `dns-production` GitHub environment. The workflow maps it to Terraform's
+`github_pages_verification` input. Local operators may use
+`-var github_pages_verification=...` instead. Keep the resulting TXT record in
+state after GitHub reports the domain verified. Wildcard records are not used.
