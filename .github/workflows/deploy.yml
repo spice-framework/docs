@@ -26,6 +26,11 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
+      - name: Configure exact Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.11.1
+
       - name: Read exact development commit
         id: source-lock
         shell: bash
@@ -42,6 +47,12 @@ jobs:
           path: .generated/tools/development
           persist-credentials: false
 
+      - name: Render generic snapshot lock
+        run: >-
+          node scripts/render-materializer-lock.mjs
+          sources/ecosystem.lock.json
+          .generated/materializer-lock.json
+
       - name: Configure exact Go
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
@@ -54,13 +65,8 @@ jobs:
           GOTOOLCHAIN: local
         run: >-
           go run ./cmd/spice-dev snapshot materialize
-          --lock "$GITHUB_WORKSPACE/sources/ecosystem.lock.json"
+          --lock "$GITHUB_WORKSPACE/.generated/materializer-lock.json"
           --root "$GITHUB_WORKSPACE/.generated/sources"
-
-      - name: Configure exact Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: 24.11.1
 
       - name: Activate exact pnpm
         run: |
