@@ -1,0 +1,49 @@
+---
+import MaturityBadge from "./MaturityBadge.astro";
+
+interface Props {
+  product: string;
+  maturity: string;
+  repository: string;
+  commit: string;
+  lockedSourceUrl: string;
+}
+const { product, maturity, repository, commit, lockedSourceUrl } = Astro.props;
+const shortRepository = repository.replace("spice-framework/", "");
+---
+
+<div class="provenance" data-pagefind-ignore>
+  <span>{product}</span>
+  <span aria-hidden="true">·</span>
+  <MaturityBadge maturity={maturity} />
+  <span aria-hidden="true">·</span>
+  <a href={lockedSourceUrl}>Source: {shortRepository}@{commit.slice(0, 7)}</a>
+  <span class="provenance__fresh">Exact reviewed source</span>
+</div>
+
+<style>
+  .provenance {
+    align-items: center;
+    color: var(--spice-text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    gap: 0.45rem;
+    margin-block: 0.85rem 1.25rem;
+  }
+  .provenance a {
+    color: inherit;
+    text-decoration-color: var(--spice-border-strong);
+    text-underline-offset: 0.2em;
+  }
+  .provenance__fresh {
+    color: var(--spice-accent-2);
+    margin-inline-start: auto;
+  }
+  @media (max-width: 35rem) {
+    .provenance__fresh {
+      margin-inline-start: 0;
+      width: 100%;
+    }
+  }
+</style>

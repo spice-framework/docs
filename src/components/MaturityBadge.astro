@@ -1,0 +1,45 @@
+---
+interface Props {
+  maturity: string;
+}
+const { maturity } = Astro.props;
+---
+
+<span class={`maturity maturity--${maturity}`}><span class="sr-only">Maturity: </span>{maturity}</span>
+
+<style>
+  .maturity {
+    align-items: center;
+    background: var(--spice-status-bg);
+    border: 1px solid var(--spice-status-border);
+    border-radius: 999px;
+    color: var(--spice-status-text);
+    display: inline-flex;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    padding: 0.32rem 0.52rem;
+    text-transform: uppercase;
+  }
+  .maturity--stable {
+    --spice-status-bg: var(--spice-positive-bg);
+    --spice-status-border: var(--spice-positive-border);
+    --spice-status-text: var(--spice-positive-text);
+  }
+  .maturity--experimental,
+  .maturity--pre-alpha {
+    --spice-status-bg: var(--spice-caution-bg);
+    --spice-status-border: var(--spice-caution-border);
+    --spice-status-text: var(--spice-caution-text);
+  }
+  .sr-only {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+</style>

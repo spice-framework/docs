@@ -1,0 +1,69 @@
+---
+const data = Astro.locals.starlightRoute.entry
+  .data as typeof Astro.locals.starlightRoute.entry.data & {
+  editSourceUrl?: string;
+  lockedSourceUrl?: string;
+  sourceRepository?: string;
+  sourceCommit?: string;
+  sourcePath?: string;
+};
+const rawUrl = `/raw${Astro.url.pathname.replace(/\/$/, "")}.md`;
+const issue = data.sourceRepository
+  ? `https://github.com/${data.sourceRepository}/issues/new?${new URLSearchParams({
+      title: `Documentation: ${data.title}`,
+      body: `Page: ${Astro.url.href}\nSource: ${data.sourcePath ?? "unknown"}@${data.sourceCommit ?? "unknown"}\n\nWhat should change?\n`,
+    })}`
+  : "https://github.com/spice-framework/docs/issues/new";
+---
+
+<div class="page-actions" data-pagefind-ignore>
+  {data.editSourceUrl && <a href={data.editSourceUrl}>Edit source</a>}
+  {data.lockedSourceUrl && <a href={data.lockedSourceUrl}>View locked source</a>}
+  {data.sourceRepository && <a href={rawUrl}>View Markdown</a>}
+  {data.sourceRepository && <button type="button" data-copy-markdown={rawUrl}>Copy Markdown</button>}
+  <button type="button" data-copy-page>Copy page link</button>
+  <a href={issue}>Report documentation issue</a>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-copy-markdown]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const response = await fetch(button.dataset.copyMarkdown ?? "");
+      if (!response.ok) return;
+      await navigator.clipboard.writeText(await response.text());
+      button.textContent = "Copied Markdown";
+    });
+  });
+  document.querySelectorAll<HTMLButtonElement>("[data-copy-page]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(window.location.href);
+      button.textContent = "Copied page link";
+    });
+  });
+</script>
+
+<style>
+  .page-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 1rem;
+  }
+  a,
+  button {
+    background: none;
+    border: 0;
+    color: var(--spice-text-muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--sl-text-sm);
+    padding: 0;
+    text-decoration: none;
+  }
+  a:hover,
+  button:hover {
+    color: var(--spice-text);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

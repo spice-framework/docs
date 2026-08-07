@@ -1,0 +1,405 @@
+{
+  "schema": 1,
+  "repositories": [
+    {
+      "repository": "spice-framework/.github",
+      "product": {
+        "id": "project-governance",
+        "title": "Project",
+        "family": "project",
+        "summary": "Organization governance, contribution, support, and security policy for the Spice Framework ecosystem.",
+        "maturity": "stable",
+        "audience": ["framework-contributor", "evaluator"]
+      },
+      "content": [
+        { "source": "profile/README.md", "route": "index", "kind": "concept", "order": 0 },
+        { "source": "README.md", "route": "infrastructure", "kind": "reference", "order": 10 },
+        { "source": "CONTRIBUTING.md", "route": "contributing", "kind": "how-to", "order": 20 },
+        { "source": "GOVERNANCE.md", "route": "governance", "kind": "concept", "order": 30 },
+        { "source": "SECURITY.md", "route": "security", "kind": "security", "order": 40 },
+        { "source": "SUPPORT.md", "route": "support", "kind": "how-to", "order": 50 }
+      ]
+    },
+    {
+      "repository": "spice-framework/development",
+      "product": {
+        "id": "ecosystem-development",
+        "title": "Ecosystem development",
+        "family": "project",
+        "summary": "Cross-repository bootstrap, compatibility, snapshot, release, and verification tooling for Spice contributors.",
+        "maturity": "preview",
+        "audience": ["framework-contributor", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/spice",
+      "product": {
+        "id": "framework",
+        "title": "Spice Framework",
+        "family": "framework",
+        "summary": "A Go-native application platform with compile-time validation, deterministic generated Go, and explicit modular architecture.",
+        "maturity": "preview",
+        "audience": [
+          "application-developer",
+          "framework-contributor",
+          "extension-author",
+          "evaluator"
+        ]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "concept", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 },
+        { "source": "ARCHITECTURE.md", "route": "architecture", "kind": "concept", "order": 20 },
+        { "source": "adrs/**/*.md", "routeFrom": "adrs", "kind": "adr", "order": 30 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/toolchain",
+      "product": {
+        "id": "toolchain",
+        "title": "Spice Toolchain",
+        "family": "toolchain",
+        "summary": "Standalone Spice compiler, command-line interface, and language tooling for deterministic Go generation.",
+        "maturity": "preview",
+        "audience": ["application-developer", "framework-contributor", "extension-author"]
+      },
+      "content": [{ "source": "README.md", "route": "index", "kind": "reference", "order": 0 }],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/goland",
+      "product": {
+        "id": "goland",
+        "title": "Spice for GoLand",
+        "family": "developer-tools",
+        "summary": "A GoLand plugin that presents canonical Spice declarations with semantic editor assistance while preserving valid Go.",
+        "maturity": "preview",
+        "audience": ["application-developer", "evaluator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ]
+    },
+    {
+      "repository": "spice-framework/zed",
+      "product": {
+        "id": "zed",
+        "title": "Spice for Zed",
+        "family": "developer-tools",
+        "summary": "A Zed extension providing Spice language support through the independently versioned Spice toolchain.",
+        "maturity": "experimental",
+        "audience": ["application-developer", "evaluator"]
+      },
+      "content": [{ "source": "README.md", "route": "index", "kind": "how-to", "order": 0 }]
+    },
+    {
+      "repository": "spice-framework/chrome",
+      "product": {
+        "id": "github-extension",
+        "title": "Spice for GitHub",
+        "family": "developer-tools",
+        "summary": "A browser extension that renders canonical Spice declaration comments semantically on GitHub without changing source.",
+        "maturity": "preview",
+        "audience": ["application-developer", "evaluator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "assets": ["docs/images/**", "store/assets/*.png"]
+    },
+    {
+      "repository": "spice-framework/starter-postgres",
+      "product": {
+        "id": "postgres",
+        "title": "PostgreSQL",
+        "family": "integration",
+        "summary": "Opt-in PostgreSQL integration for Spice applications with explicit configuration, lifecycle, and compatibility contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-mysql",
+      "product": {
+        "id": "mysql",
+        "title": "MySQL",
+        "family": "integration",
+        "summary": "Opt-in MySQL integration for Spice applications with explicit configuration, lifecycle, and compatibility contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-redis",
+      "product": {
+        "id": "redis",
+        "title": "Redis",
+        "family": "integration",
+        "summary": "Opt-in Redis integration for Spice applications with explicit configuration, lifecycle, and compatibility contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-smtp",
+      "product": {
+        "id": "smtp",
+        "title": "SMTP",
+        "family": "integration",
+        "summary": "Opt-in SMTP integration for Spice applications with explicit configuration, lifecycle, and compatibility contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-otel",
+      "product": {
+        "id": "opentelemetry",
+        "title": "OpenTelemetry",
+        "family": "integration",
+        "summary": "Opt-in OpenTelemetry integration for Spice applications with explicit observability and lifecycle contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-oauth2client",
+      "product": {
+        "id": "oauth2-client",
+        "title": "OAuth2 client",
+        "family": "integration",
+        "summary": "Opt-in OAuth2 client integration for Spice applications with explicit credentials, transport, and lifecycle contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-oidc",
+      "product": {
+        "id": "oidc",
+        "title": "OIDC resource server",
+        "family": "integration",
+        "summary": "Opt-in OIDC resource-server integration for Spice applications with explicit validation and security contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-websocket",
+      "product": {
+        "id": "websocket",
+        "title": "WebSocket",
+        "family": "integration",
+        "summary": "Opt-in WebSocket integration for Spice applications with explicit upgrade, connection, and lifecycle contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-grpc",
+      "product": {
+        "id": "grpc",
+        "title": "gRPC",
+        "family": "integration",
+        "summary": "Opt-in gRPC integration for Spice applications with explicit server, client, transport, and lifecycle contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/starter-kafka",
+      "product": {
+        "id": "kafka",
+        "title": "Kafka",
+        "family": "integration",
+        "summary": "Opt-in Kafka integration for Spice applications with explicit broker, producer, consumer, and lifecycle contracts.",
+        "maturity": "preview",
+        "audience": ["application-developer", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/petclinic",
+      "product": {
+        "id": "petclinic",
+        "title": "Petclinic",
+        "family": "example",
+        "summary": "A reference Spice application proving generated application composition, database starters, and external-consumer ergonomics.",
+        "maturity": "preview",
+        "audience": ["application-developer", "evaluator"]
+      },
+      "content": [{ "source": "README.md", "route": "index", "kind": "example", "order": 0 }],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/commerce",
+      "product": {
+        "id": "commerce",
+        "title": "Commerce",
+        "family": "example",
+        "summary": "A reference commerce application demonstrating modular Spice composition and production integration boundaries.",
+        "maturity": "preview",
+        "audience": ["application-developer", "evaluator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "example", "order": 0 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 10 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/spice-agent",
+      "product": {
+        "id": "agent",
+        "title": "Spice Agent",
+        "family": "agent",
+        "summary": "A Go-native agent SDK and deterministic kernel assembled through Spice's generated exact-type extension graph.",
+        "maturity": "experimental",
+        "audience": ["application-developer", "extension-author", "evaluator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "concept", "order": 0 },
+        { "source": "ARCHITECTURE.md", "route": "architecture", "kind": "concept", "order": 10 },
+        {
+          "source": "docs/**/*.md",
+          "routeFrom": "docs",
+          "exclude": ["docs/implementation/evidence/**"],
+          "order": 20
+        },
+        {
+          "source": "docs/implementation/evidence/**/*.md",
+          "routeFrom": "docs/implementation/evidence",
+          "kind": "status",
+          "order": 900,
+          "search": false
+        }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/spice-agent-provider-openai",
+      "product": {
+        "id": "openai-provider",
+        "title": "OpenAI provider",
+        "family": "agent-extension",
+        "summary": "A Spice Agent provider implementing OpenAI model access, streaming, metadata, and explicit security boundaries.",
+        "maturity": "experimental",
+        "audience": ["application-developer", "extension-author", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "ARCHITECTURE.md", "route": "architecture", "kind": "concept", "order": 10 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 20 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/spice-agent-tools-coding",
+      "product": {
+        "id": "coding-tools",
+        "title": "Coding tools",
+        "family": "agent-extension",
+        "summary": "Spice Agent coding tools with deterministic replay, bounded filesystem authority, and explicit security contracts.",
+        "maturity": "experimental",
+        "audience": ["application-developer", "extension-author", "operator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "ARCHITECTURE.md", "route": "architecture", "kind": "concept", "order": 10 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 20 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/spice-agent-tui",
+      "product": {
+        "id": "terminal-interface",
+        "title": "Terminal interface",
+        "family": "agent-extension",
+        "summary": "An accessible terminal interface for Spice Agent with explicit rendering, key, annotation, and lifecycle policies.",
+        "maturity": "experimental",
+        "audience": ["application-developer", "extension-author", "evaluator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "ARCHITECTURE.md", "route": "architecture", "kind": "concept", "order": 10 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 20 }
+      ],
+      "goSnippets": true
+    },
+    {
+      "repository": "spice-framework/spice-agent-coding",
+      "product": {
+        "id": "coding-distribution",
+        "title": "Coding distribution",
+        "family": "agent-distribution",
+        "summary": "A composed Spice Agent coding distribution proving provider, tool, terminal, and executable integration boundaries.",
+        "maturity": "experimental",
+        "audience": ["application-developer", "operator", "evaluator"]
+      },
+      "content": [
+        { "source": "README.md", "route": "index", "kind": "how-to", "order": 0 },
+        { "source": "ARCHITECTURE.md", "route": "architecture", "kind": "concept", "order": 10 },
+        { "source": "docs/**/*.md", "routeFrom": "docs", "order": 20 }
+      ],
+      "goSnippets": true
+    }
+  ]
+}

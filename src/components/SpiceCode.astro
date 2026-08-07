@@ -1,0 +1,78 @@
+---
+import { readFile } from "node:fs/promises";
+import { createRequire } from "node:module";
+import path from "node:path";
+import { codeToHtml } from "shiki";
+import {
+  analyzeSpiceCode,
+  type SpiceSyntax,
+} from "../../packages/expressive-code-spice/src/index.ts";
+
+interface Props {
+  repository: string;
+  source: string;
+  title?: string;
+  view?: "source" | "spice" | "compare";
+}
+const { repository, source, title = source, view = "compare" } = Astro.props;
+if (
+  !/^[a-z0-9.-]+$/.test(repository) ||
+  source.includes("\\") ||
+  source.split("/").includes("..")
+) {
+  throw new Error("SpiceCode source must be a safe locked repository path");
+}
+const repositoryRoot = path.resolve(".generated", "sources", repository);
+const sourceFile = path.resolve(repositoryRoot, ...source.split("/"));
+const relation = path.relative(repositoryRoot, sourceFile);
+if (!relation || relation.startsWith("..") || path.isAbsolute(relation)) {
+  throw new Error("SpiceCode source escapes its locked repository");
+}
+const code = (await readFile(sourceFile, "utf8")).replace(/\r\n/g, "\n").trimEnd();
+const require = createRequire(import.meta.url);
+const chromeSourceRoot = process.env.SPICE_CHROME_SOURCE_ROOT
+  ? path.resolve(process.env.SPICE_CHROME_SOURCE_ROOT)
+  : path.resolve(".generated/sources/chrome");
+const syntax = require(
+  path.join(chromeSourceRoot, "packages/spice-syntax/src/index.cjs"),
+) as SpiceSyntax;
+const analysis = analyzeSpiceCode(code, syntax);
+const highlighted = await codeToHtml(code, {
+  lang: "go",
+  themes: { light: "github-light", dark: "github-dark" },
+});
+const encodedAnalysis = Buffer.from(JSON.stringify(analysis.lines), "utf8").toString("base64");
+const encodedSource = Buffer.from(code, "utf8").toString("base64");
+---
+
+<figure
+  class="spice-code"
+  data-spice-viewer
+  data-spice-analysis={encodedAnalysis}
+  data-spice-source={encodedSource}
+  data-spice-view={view}
+>
+  <figcaption class="spice-code__caption">
+    <span>{title}</span>
+    <button type="button" data-spice-copy>Copy Go source</button>
+  </figcaption>
+  <div class="spice-code__controls" role="group" aria-label={`Code view for ${title}`}>
+    <button type="button" data-spice-select="source">Go source</button>
+    <button type="button" data-spice-select="spice">Spice view</button>
+    <button type="button" data-spice-select="compare">Compare</button>
+  </div>
+  <div class="spice-code__viewport">
+    <div class="spice-code__layer spice-code__source" data-spice-source-layer set:html={highlighted} />
+    <div
+      class="spice-code__layer spice-code__rendered"
+      data-spice-rendered-layer
+      aria-hidden="true"
+      inert
+      set:html={highlighted}
+    />
+  </div>
+  <label class="spice-code__range">
+    <span>Spice reveal</span>
+    <input data-spice-range type="range" min="0" max="100" value="50" />
+  </label>
+</figure>

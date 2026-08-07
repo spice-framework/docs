@@ -1,0 +1,110 @@
+---
+const products = [
+  ["framework", "Framework"],
+  ["toolchain", "Toolchain"],
+  ["agent", "Agent"],
+  ["integrations", "Integrations"],
+  ["tools", "Tools"],
+  ["examples", "Examples"],
+  ["project", "Project"],
+] as const;
+---
+
+<spice-docs-search class={Astro.props.class}>
+  <button class="search-trigger" type="button" data-search-open aria-label="Search documentation">
+    <span aria-hidden="true">⌕</span>
+    <span class="search-label">Search</span>
+    <kbd><span>Ctrl</span> K</kbd>
+  </button>
+  <dialog aria-label="Search documentation">
+    <div class="search-dialog">
+      <header>
+        <label>
+          <span class="sr-only">Search documentation</span>
+          <input type="search" data-search-input placeholder="Search all Spice documentation" />
+        </label>
+        <button type="button" data-search-close>Close</button>
+      </header>
+      <div class="product-filters" role="group" aria-label="Filter by product">
+        {
+          products.map(([value, label]) => (
+            <button type="button" data-product={value} aria-pressed="false">{label}</button>
+          ))
+        }
+      </div>
+      <div class="search-filters">
+        <label>Kind <select data-filter="kind"><option value="">All</option></select></label>
+        <label>Maturity <select data-filter="maturity"><option value="">All</option></select></label>
+        <label>Source <select data-filter="repository"><option value="">All</option></select></label>
+        <label class="evidence-toggle">
+          <input type="checkbox" data-include-evidence /> Include implementation evidence/status
+        </label>
+      </div>
+      <p class="search-status" data-search-status role="status" aria-live="polite">
+        Type to search the exact reviewed documentation snapshot.
+      </p>
+      <ol class="search-results" data-search-results aria-label="Search results"></ol>
+    </div>
+  </dialog>
+</spice-docs-search>
+
+<script src="../../scripts/filtered-search.ts"></script>
+
+<style>
+  spice-docs-search { display: contents; }
+  .search-trigger {
+    align-items: center; background: transparent; border: 0; color: var(--sl-color-gray-1);
+    cursor: pointer; display: flex; font: inherit; gap: .5rem; height: 2.5rem;
+  }
+  .search-trigger > span:first-child { font-size: 1.45rem; line-height: 1; }
+  .search-trigger kbd { display: none; }
+  dialog {
+    background: var(--spice-bg); border: 1px solid var(--spice-border); color: var(--spice-text);
+    height: min(48rem, 100%); margin: 0; max-height: 100%; max-width: 100%; padding: 0;
+    width: min(58rem, 100%);
+  }
+  dialog::backdrop { backdrop-filter: blur(.25rem); background: rgb(5 11 20 / 72%); }
+  .search-dialog { display: grid; gap: 1rem; padding: 1rem; }
+  header { display: flex; gap: .65rem; }
+  header label { flex: 1; }
+  input[type="search"], select {
+    background: var(--spice-bg-raised); border: 1px solid var(--spice-border); border-radius: .35rem;
+    color: var(--spice-text); font: inherit; min-height: 2.7rem; padding: .55rem .7rem; width: 100%;
+  }
+  header button, .product-filters button {
+    background: var(--spice-bg-subtle); border: 1px solid var(--spice-border); border-radius: .35rem;
+    color: var(--spice-text); cursor: pointer; font: inherit; padding: .5rem .7rem;
+  }
+  .product-filters { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .product-filters button[aria-pressed="true"] { background: var(--spice-accent-2); color: #07101d; }
+  .search-filters { display: grid; gap: .65rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .search-filters label { color: var(--spice-text-muted); display: grid; font-size: .72rem; gap: .25rem; }
+  .evidence-toggle { align-items: center; display: flex !important; grid-column: 1 / -1; }
+  .evidence-toggle input { accent-color: var(--spice-accent-2); }
+  .search-status { color: var(--spice-text-muted); font-size: .82rem; margin: 0; }
+  .search-results { display: grid; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+  .search-results :global(a) {
+    border: 1px solid var(--spice-border); border-radius: .4rem; color: inherit; display: grid;
+    gap: .3rem; padding: .75rem; text-decoration: none;
+  }
+  .search-results :global(a:hover), .search-results :global(a:focus-visible) { border-color: var(--spice-accent-2); }
+  .search-results :global(strong) { color: var(--spice-text); }
+  .search-results :global(p) { color: var(--spice-text-muted); font-size: .84rem; margin: 0; }
+  .search-results :global(.result-meta) { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .search-results :global(.result-meta span) {
+    background: var(--spice-bg-subtle); border-radius: 999px; color: var(--spice-text-muted);
+    font-size: .68rem; padding: .14rem .42rem;
+  }
+  .sr-only { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; width: 1px; }
+  @media (min-width: 50rem) {
+    .search-trigger {
+      background: var(--sl-color-black); border: 1px solid var(--sl-color-gray-5); border-radius: .5rem;
+      color: var(--sl-color-gray-2); font-size: var(--sl-text-sm); padding: 0 .5rem 0 .75rem; width: 15rem;
+    }
+    .search-trigger kbd { background: var(--sl-color-gray-6); border-radius: .25rem; display: flex; font-size: .68rem; gap: .2rem; margin-inline-start: auto; padding: .12rem .35rem; }
+  }
+  @media (max-width: 40rem) {
+    .search-filters { grid-template-columns: 1fr; }
+    dialog { height: 100%; width: 100%; }
+  }
+</style>

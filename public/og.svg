@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Spice Framework</title>
+  <desc id="desc">Valid Go in. Ordinary Go out.</desc>
+  <rect width="1200" height="630" fill="#0d1217" />
+  <rect x="72" y="72" width="12" height="486" fill="#d85c1a" />
+  <circle cx="1080" cy="90" r="210" fill="#3f78dc" opacity="0.12" />
+  <text x="126" y="275" fill="#f1e8d7" font-family="system-ui, sans-serif" font-size="112" font-weight="750">Spice</text>
+  <text x="132" y="365" fill="#e99a22" font-family="ui-monospace, monospace" font-size="40">Valid Go in. Ordinary Go out.</text>
+  <text x="132" y="438" fill="#a7afb7" font-family="system-ui, sans-serif" font-size="28">Compile-time validation · deterministic generated Go</text>
+</svg>

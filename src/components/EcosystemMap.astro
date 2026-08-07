@@ -1,0 +1,102 @@
+---
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
+interface Source {
+  repository: string;
+  productId: string;
+  title: string;
+  family: string;
+  mount: string;
+}
+const sourceMap = JSON.parse(await readFile(path.resolve("config/source-map.json"), "utf8")) as {
+  sources: Source[];
+};
+const integrations = new Map(
+  sourceMap.sources
+    .filter((source) => source.family === "integration")
+    .map((source) => [source.productId, source]),
+);
+const groups = [
+  { label: "SQL and persistence", ids: ["postgres", "mysql"] },
+  { label: "Caching and messaging", ids: ["redis", "kafka"] },
+  { label: "Transport", ids: ["websocket", "grpc"] },
+  { label: "Identity and security", ids: ["oauth2-client", "oidc"] },
+  { label: "Operations", ids: ["opentelemetry", "smtp"] },
+];
+---
+
+<div class="ecosystem-map">
+  {groups.map((group) => (
+    <section>
+      <h2>{group.label}</h2>
+      <div>
+        {group.ids.map((id) => {
+          const source = integrations.get(id);
+          return source && <a href={`${source.mount}/`}>{source.title}</a>;
+        })}
+      </div>
+    </section>
+  ))}
+</div>
+
+<style>
+  .ecosystem-map {
+    border-block: 1px solid var(--spice-border);
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  section {
+    min-width: 0;
+    padding: 1rem;
+  }
+  section + section {
+    border-inline-start: 1px solid var(--spice-border);
+  }
+  h2 {
+    color: var(--spice-text-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    margin: 0 0 0.65rem;
+    text-transform: uppercase;
+  }
+  section div {
+    display: grid;
+    gap: 0.35rem;
+  }
+  a {
+    color: var(--spice-text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--spice-accent-2);
+  }
+  @media (max-width: 58rem) {
+    .ecosystem-map {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    section + section {
+      border-inline-start: 0;
+    }
+    section:nth-child(even) {
+      border-inline-start: 1px solid var(--spice-border);
+    }
+    section:nth-child(n + 3) {
+      border-block-start: 1px solid var(--spice-border);
+    }
+  }
+  @media (max-width: 32rem) {
+    .ecosystem-map {
+      display: block;
+    }
+    section,
+    section:nth-child(even) {
+      border-block-start: 1px solid var(--spice-border);
+      border-inline-start: 0;
+    }
+    section:first-child {
+      border-block-start: 0;
+    }
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+const products = [
+  { label: "Framework", href: "/framework/", prefix: "/framework/" },
+  { label: "Agent", href: "/agent/", prefix: "/agent/" },
+  { label: "Integrations", href: "/integrations/", prefix: "/integrations/" },
+  { label: "Developer tools", href: "/tools/", prefix: "/tools/" },
+  { label: "Examples", href: "/examples/", prefix: "/examples/" },
+];
+const pathname = Astro.url.pathname;
+---
+
+<nav class="product-switcher" aria-label="Spice products">
+  <div class="product-switcher__wide">
+    {products.map((product) => (
+      <a
+        href={product.href}
+        aria-current={pathname.startsWith(product.prefix) ? "page" : undefined}
+      >
+        {product.label}
+      </a>
+    ))}
+  </div>
+  <details class="product-switcher__narrow">
+    <summary>Products</summary>
+    <div>
+      {products.map((product) => (
+        <a
+          href={product.href}
+          aria-current={pathname.startsWith(product.prefix) ? "page" : undefined}
+        >
+          {product.label}
+        </a>
+      ))}
+    </div>
+  </details>
+</nav>
+
+<style>
+  .product-switcher__wide {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  a,
+  summary {
+    border-radius: var(--spice-radius-sm);
+    color: var(--spice-text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.45rem 0.58rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  a:hover,
+  a[aria-current="page"] {
+    background: var(--spice-bg-raised);
+    color: var(--spice-text);
+  }
+  .product-switcher__narrow {
+    display: none;
+    position: relative;
+  }
+  .product-switcher__narrow summary {
+    cursor: pointer;
+  }
+  .product-switcher__narrow div {
+    background: var(--spice-bg-raised);
+    border: 1px solid var(--spice-border);
+    border-radius: var(--spice-radius-md);
+    display: grid;
+    inset-block-start: calc(100% + 0.5rem);
+    min-width: 11rem;
+    padding: 0.4rem;
+    position: absolute;
+    z-index: 20;
+  }
+  @media (max-width: 74rem) {
+    .product-switcher__wide {
+      display: none;
+    }
+    .product-switcher__narrow {
+      display: block;
+    }
+  }
+</style>

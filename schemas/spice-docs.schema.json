@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://spiceframework.dev/schemas/spice-docs.schema.json",
+  "title": "Spice source documentation manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "product", "content"],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri-reference" },
+    "schema": { "const": 1 },
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "family", "summary", "maturity"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "family": {
+          "enum": [
+            "project",
+            "framework",
+            "toolchain",
+            "developer-tools",
+            "integration",
+            "example",
+            "agent",
+            "agent-extension",
+            "agent-distribution"
+          ]
+        },
+        "summary": { "type": "string", "minLength": 20, "maxLength": 240 },
+        "maturity": {
+          "enum": ["pre-alpha", "experimental", "preview", "stable", "deprecated"]
+        },
+        "audience": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "application-developer",
+              "framework-contributor",
+              "extension-author",
+              "operator",
+              "evaluator"
+            ]
+          }
+        },
+        "icon": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }
+      }
+    },
+    "content": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "route": { "type": "string", "pattern": "^(index|[a-z0-9][a-z0-9/_-]*)$" },
+          "routeFrom": { "type": "string" },
+          "kind": {
+            "enum": [
+              "tutorial",
+              "how-to",
+              "concept",
+              "reference",
+              "example",
+              "adr",
+              "status",
+              "security",
+              "release"
+            ]
+          },
+          "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "description": { "type": "string", "minLength": 20, "maxLength": 300 },
+          "order": { "type": "integer", "minimum": 0 },
+          "search": { "type": "boolean", "default": true },
+          "exclude": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+          "aliases": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9/_-]*$" }
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "snippets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["root", "include"],
+        "properties": {
+          "root": { "type": "string", "minLength": 1 },
+          "include": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string" }
+          },
+          "exclude": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+        }
+      }
+    },
+    "navigation": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "items"],
+        "properties": {
+          "label": { "type": "string", "minLength": 1, "maxLength": 60 },
+          "order": { "type": "integer", "minimum": 0 },
+          "collapsed": { "type": "boolean", "default": false },
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "pattern": "^(index|[a-z0-9][a-z0-9/_-]*)$" }
+          }
+        }
+      }
+    }
+  }
+}

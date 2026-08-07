@@ -1,0 +1,69 @@
+header.header {
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--spice-border);
+}
+
+.sidebar-pane {
+  border-inline-end-color: var(--spice-border);
+}
+
+.sidebar-content a[aria-current="page"] {
+  background: var(--spice-bg-raised);
+  border-inline-start: 2px solid var(--spice-accent-1);
+  color: var(--spice-text);
+}
+
+.right-sidebar {
+  border-inline-start: 0;
+}
+
+.sl-markdown-content h2 {
+  border-top: 1px solid var(--spice-border);
+  letter-spacing: -0.025em;
+  margin-top: 3.25rem;
+  padding-top: 1.5rem;
+}
+
+.sl-markdown-content table {
+  font-size: 0.9rem;
+}
+
+.sl-markdown-content th {
+  background: var(--spice-bg-subtle);
+}
+
+.hero {
+  padding-block: clamp(3rem, 7vw, 6rem);
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5.7rem);
+  letter-spacing: -0.055em;
+  max-width: 13ch;
+}
+
+.hero .tagline {
+  color: var(--spice-text-muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: 44rem;
+}
+
+.hero .actions a:first-child {
+  background: #a83d08;
+  border-color: #a83d08;
+  color: #ffffff;
+}
+
+.sl-markdown-content a code {
+  color: #9d3e0e;
+}
+
+:root[data-theme="dark"] .sl-markdown-content a code {
+  color: #ffc28f;
+}
+
+@media (max-width: 50rem) {
+  header.header {
+    padding-inline: 0.75rem;
+  }
+}

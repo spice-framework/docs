@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "organization": "spice-framework",
+  "catalog": {
+    "repository": "spice-framework/development",
+    "path": "internal/catalog/compatibility.json"
+  },
+  "exclusions": [
+    {
+      "repository": "spice-framework/docs",
+      "reason": "The central portal owns assembly and global pages; it is not an imported product source."
+    }
+  ],
+  "sources": [
+    {
+      "repository": "spice-framework/.github",
+      "productId": "project-governance",
+      "title": "Project",
+      "family": "project",
+      "mount": "/project",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/development",
+      "productId": "ecosystem-development",
+      "title": "Ecosystem development",
+      "family": "project",
+      "mount": "/project/ecosystem",
+      "order": 20
+    },
+    {
+      "repository": "spice-framework/spice",
+      "productId": "framework",
+      "title": "Spice Framework",
+      "family": "framework",
+      "mount": "/framework",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/toolchain",
+      "productId": "toolchain",
+      "title": "Spice Toolchain",
+      "family": "toolchain",
+      "mount": "/toolchain",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/goland",
+      "productId": "goland",
+      "title": "Spice for GoLand",
+      "family": "developer-tools",
+      "mount": "/tools/goland",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/zed",
+      "productId": "zed",
+      "title": "Spice for Zed",
+      "family": "developer-tools",
+      "mount": "/tools/zed",
+      "order": 20
+    },
+    {
+      "repository": "spice-framework/chrome",
+      "productId": "github-extension",
+      "title": "Spice for GitHub",
+      "family": "developer-tools",
+      "mount": "/tools/github-extension",
+      "order": 30
+    },
+    {
+      "repository": "spice-framework/starter-postgres",
+      "productId": "postgres",
+      "title": "PostgreSQL",
+      "family": "integration",
+      "mount": "/integrations/postgres",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/starter-mysql",
+      "productId": "mysql",
+      "title": "MySQL",
+      "family": "integration",
+      "mount": "/integrations/mysql",
+      "order": 20
+    },
+    {
+      "repository": "spice-framework/starter-redis",
+      "productId": "redis",
+      "title": "Redis",
+      "family": "integration",
+      "mount": "/integrations/redis",
+      "order": 30
+    },
+    {
+      "repository": "spice-framework/starter-smtp",
+      "productId": "smtp",
+      "title": "SMTP",
+      "family": "integration",
+      "mount": "/integrations/smtp",
+      "order": 40
+    },
+    {
+      "repository": "spice-framework/starter-otel",
+      "productId": "opentelemetry",
+      "title": "OpenTelemetry",
+      "family": "integration",
+      "mount": "/integrations/opentelemetry",
+      "order": 50
+    },
+    {
+      "repository": "spice-framework/starter-oauth2client",
+      "productId": "oauth2-client",
+      "title": "OAuth2 client",
+      "family": "integration",
+      "mount": "/integrations/oauth2-client",
+      "order": 60
+    },
+    {
+      "repository": "spice-framework/starter-oidc",
+      "productId": "oidc",
+      "title": "OIDC resource server",
+      "family": "integration",
+      "mount": "/integrations/oidc",
+      "order": 70
+    },
+    {
+      "repository": "spice-framework/starter-websocket",
+      "productId": "websocket",
+      "title": "WebSocket",
+      "family": "integration",
+      "mount": "/integrations/websocket",
+      "order": 80
+    },
+    {
+      "repository": "spice-framework/starter-grpc",
+      "productId": "grpc",
+      "title": "gRPC",
+      "family": "integration",
+      "mount": "/integrations/grpc",
+      "order": 90
+    },
+    {
+      "repository": "spice-framework/starter-kafka",
+      "productId": "kafka",
+      "title": "Kafka",
+      "family": "integration",
+      "mount": "/integrations/kafka",
+      "order": 100
+    },
+    {
+      "repository": "spice-framework/petclinic",
+      "productId": "petclinic",
+      "title": "Petclinic",
+      "family": "example",
+      "mount": "/examples/petclinic",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/commerce",
+      "productId": "commerce",
+      "title": "Commerce",
+      "family": "example",
+      "mount": "/examples/commerce",
+      "order": 20
+    },
+    {
+      "repository": "spice-framework/spice-agent",
+      "productId": "agent",
+      "title": "Spice Agent",
+      "family": "agent",
+      "mount": "/agent",
+      "order": 10
+    },
+    {
+      "repository": "spice-framework/spice-agent-provider-openai",
+      "productId": "openai-provider",
+      "title": "OpenAI provider",
+      "family": "agent-extension",
+      "mount": "/agent/providers/openai",
+      "order": 20
+    },
+    {
+      "repository": "spice-framework/spice-agent-tools-coding",
+      "productId": "coding-tools",
+      "title": "Coding tools",
+      "family": "agent-extension",
+      "mount": "/agent/tools/coding",
+      "order": 30
+    },
+    {
+      "repository": "spice-framework/spice-agent-tui",
+      "productId": "terminal-interface",
+      "title": "Terminal interface",
+      "family": "agent-extension",
+      "mount": "/agent/interfaces/tui",
+      "order": 40
+    },
+    {
+      "repository": "spice-framework/spice-agent-coding",
+      "productId": "coding-distribution",
+      "title": "Coding distribution",
+      "family": "agent-distribution",
+      "mount": "/agent/distributions/coding",
+      "order": 50
+    }
+  ]
+}

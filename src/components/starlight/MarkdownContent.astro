@@ -1,0 +1,41 @@
+---
+import DefaultMarkdownContent from "@astrojs/starlight/components/MarkdownContent.astro";
+
+const data = Astro.locals.starlightRoute.entry.data;
+const family = data.family ?? "portal";
+const lane = family.startsWith("agent")
+  ? "agent"
+  : family === "developer-tools"
+    ? "tools"
+    : family === "integration"
+      ? "integrations"
+      : family === "example"
+        ? "examples"
+        : family;
+const filters = {
+  product: data.product ?? "portal",
+  family,
+  lane,
+  kind: data.kind ?? "landing",
+  maturity: data.maturity ?? "current",
+  repository: data.sourceRepository ?? "spice-framework/docs",
+  version: data.sourceCommit ?? "portal",
+  channel: data.sourceCommit ? "snapshot" : "main",
+  default_visibility: String(data.searchInclude !== false),
+};
+---
+
+<div class="spice-search-metadata" data-pagefind-ignore aria-hidden="true">
+  {
+    Object.entries(filters).map(([name, value]) => (
+      <span data-pagefind-filter={name} data-pagefind-meta={name}>{value}</span>
+    ))
+  }
+</div>
+<DefaultMarkdownContent><slot /></DefaultMarkdownContent>
+
+<style>
+  .spice-search-metadata {
+    display: none;
+  }
+</style>

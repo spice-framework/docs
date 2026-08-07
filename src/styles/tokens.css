@@ -1,0 +1,70 @@
+@import "@fontsource-variable/outfit";
+
+:root {
+  --spice-accent-1: #d85c1a;
+  --spice-accent-2: #e99a22;
+  --spice-accent-3: #3f78dc;
+  --spice-bg: #fbfaf7;
+  --spice-bg-subtle: #f4f1eb;
+  --spice-bg-raised: #ffffff;
+  --spice-text: #171a1d;
+  --spice-text-muted: #62676d;
+  --spice-border: #dfdcd5;
+  --spice-border-strong: #b7b2aa;
+  --spice-code-bg: #f6f7f8;
+  --spice-positive-bg: #eaf7ef;
+  --spice-positive-border: #9acdae;
+  --spice-positive-text: #19643a;
+  --spice-caution-bg: #fff4dc;
+  --spice-caution-border: #e7bd65;
+  --spice-caution-text: #79510b;
+  --spice-status-bg: #edf2fb;
+  --spice-status-border: #a9bde4;
+  --spice-status-text: #315486;
+  --spice-radius-sm: 6px;
+  --spice-radius-md: 10px;
+  --spice-content-width: 48rem;
+
+  --sl-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sl-font-system-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --sl-content-width: var(--spice-content-width);
+  --sl-color-accent-low: #f9dfce;
+  --sl-color-accent: var(--spice-accent-1);
+  --sl-color-accent-high: #6e2707;
+  --sl-color-bg: var(--spice-bg);
+  --sl-color-bg-nav: color-mix(in srgb, var(--spice-bg) 94%, transparent);
+  --sl-color-bg-sidebar: var(--spice-bg-subtle);
+  --sl-color-hairline: var(--spice-border);
+  --sl-color-hairline-light: var(--spice-border);
+  --sl-color-white: var(--spice-text);
+  --sl-color-gray-1: var(--spice-text);
+  --sl-color-gray-2: #383d42;
+  --sl-color-gray-3: var(--spice-text-muted);
+  --sl-color-gray-4: #979ca1;
+  --sl-color-gray-5: var(--spice-border);
+  --sl-color-gray-6: var(--spice-bg-subtle);
+  --sl-color-black: var(--spice-bg);
+}
+
+:root[data-theme="dark"] {
+  --spice-bg: #0d1217;
+  --spice-bg-subtle: #121920;
+  --spice-bg-raised: #182129;
+  --spice-text: #f1e8d7;
+  --spice-text-muted: #a7afb7;
+  --spice-border: #29343d;
+  --spice-border-strong: #4e5b65;
+  --spice-code-bg: #0a0f14;
+  --spice-positive-bg: #112b20;
+  --spice-positive-border: #2d704e;
+  --spice-positive-text: #8cd8aa;
+  --spice-caution-bg: #322610;
+  --spice-caution-border: #806325;
+  --spice-caution-text: #f0c66e;
+  --spice-status-bg: #15243a;
+  --spice-status-border: #345a91;
+  --spice-status-text: #9dbcf0;
+  --sl-color-accent-low: #431c0a;
+  --sl-color-accent-high: #ffc28f;
+  color-scheme: dark;
+}

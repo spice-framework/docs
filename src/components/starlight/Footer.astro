@@ -1,0 +1,37 @@
+---
+import DefaultFooter from "@astrojs/starlight/components/Footer.astro";
+---
+
+<DefaultFooter />
+<nav class="spice-footer" aria-label="Project links" data-pagefind-ignore>
+  <span>Spice Framework</span>
+  <a href="/project/contributing/">Contributing</a>
+  <a href="/project/security/">Security</a>
+  <a href="/project/governance/">Governance</a>
+  <a href="https://github.com/spice-framework">GitHub</a>
+</nav>
+
+<style>
+  .spice-footer {
+    border-top: 1px solid var(--spice-border);
+    color: var(--spice-text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--sl-text-xs);
+    gap: 0.65rem 1.25rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+  }
+  .spice-footer span {
+    color: var(--spice-text);
+    font-weight: 650;
+    margin-right: auto;
+  }
+  .spice-footer a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .spice-footer a:hover {
+    color: var(--spice-text);
+  }
+</style>

@@ -1,0 +1,8 @@
+{
+  "name": "Spice Framework documentation",
+  "short_name": "Spice Docs",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c1014",
+  "theme_color": "#f16a4b"
+}

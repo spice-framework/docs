@@ -1,0 +1,33 @@
+---
+import { createRequire } from "node:module";
+import path from "node:path";
+
+const require = createRequire(import.meta.url);
+const chromeSourceRoot = process.env.SPICE_CHROME_SOURCE_ROOT
+  ? path.resolve(process.env.SPICE_CHROME_SOURCE_ROOT)
+  : path.resolve(".generated/sources/chrome");
+const palette = require(path.join(chromeSourceRoot, "packages/spice-syntax/src/palette.cjs")) as {
+  VIVID_COLORS: Record<string, string>;
+};
+const colors = palette.VIVID_COLORS;
+const variables = {
+  "spice-token-prefix": colors.prefix,
+  "spice-token-sigil": colors.sigil,
+  "spice-token-namespace": colors.namespace,
+  "spice-token-annotation": colors.annotation,
+  "spice-token-parameter": colors.parameter,
+  "spice-token-import-symbol": colors.importSymbol,
+  "spice-token-import-alias": colors.importAlias,
+  "spice-token-type-reference": colors.typeReference,
+  "spice-token-string": colors.string,
+  "spice-token-number": colors.number,
+  "spice-token-boolean": colors.boolean,
+  "spice-token-identifier": colors.identifier,
+  "spice-token-keyword": colors.keyword,
+  "spice-token-operator": colors.operator,
+};
+---
+
+<style is:global define:vars={variables}>
+  :root {}
+</style>

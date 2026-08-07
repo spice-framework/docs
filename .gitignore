@@ -1,0 +1,16 @@
+node_modules/
+.astro/
+.generated/
+dist/
+playwright-report/
+test-results/
+coverage/
+.artifacts/
+infra/dns/.terraform/
+infra/dns/*.tfstate
+infra/dns/*.tfstate.*
+infra/dns/*.tfplan
+infra/dns/.terraform.lock.hcl.backup
+*.log
+.DS_Store
+Thumbs.db

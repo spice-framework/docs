@@ -1,0 +1,67 @@
+name: Propose source snapshot update
+
+on:
+  schedule:
+    - cron: "17 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: source-lock-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout documentation portal
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Configure exact Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.11.1
+      - name: Activate exact pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.16.0 --activate
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Generate proposed exact lock
+        run: pnpm lock:sources
+      - name: Validate and build proposed snapshot
+        run: pnpm validate && pnpm assemble && pnpm typecheck && pnpm build
+      - name: Detect publishable changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- sources/ecosystem.lock.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Open or update reviewed lock pull request
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          branch=automation/docs-source-lock
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git checkout -B "$branch"
+          git add -- sources/ecosystem.lock.json
+          git commit -m "docs: update exact ecosystem snapshot"
+          gh auth setup-git
+          git push --force-with-lease origin "$branch"
+          if gh pr view "$branch" >/dev/null 2>&1; then
+            gh pr edit "$branch" --title "docs: update exact ecosystem snapshot" --body "Automated exact-commit documentation snapshot proposal. Review source commits, route changes, and preview checks before merge."
+          else
+            gh pr create --base main --head "$branch" --title "docs: update exact ecosystem snapshot" --body "Automated exact-commit documentation snapshot proposal. Review source commits, route changes, and preview checks before merge."
+          fi

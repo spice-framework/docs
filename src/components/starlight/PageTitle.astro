@@ -1,0 +1,36 @@
+---
+import Provenance from "../Provenance.astro";
+
+const data = Astro.locals.starlightRoute.entry
+  .data as typeof Astro.locals.starlightRoute.entry.data & {
+  product?: string;
+  maturity?: string;
+  sourceRepository?: string;
+  sourceCommit?: string;
+  lockedSourceUrl?: string;
+};
+---
+
+<h1 id="_top">{data.title}</h1>
+{
+  data.sourceRepository && data.sourceCommit && data.lockedSourceUrl && (
+    <Provenance
+      product={data.product ?? data.title}
+      maturity={data.maturity ?? "preview"}
+      repository={data.sourceRepository}
+      commit={data.sourceCommit}
+      lockedSourceUrl={data.lockedSourceUrl}
+    />
+  )
+}
+
+<style>
+  h1 {
+    color: var(--spice-text);
+    font-size: var(--sl-text-h1);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    margin-top: 1rem;
+  }
+</style>

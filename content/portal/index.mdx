@@ -1,0 +1,86 @@
+---
+title: Spice Framework
+description: Build Go applications with compile-time validation, deterministic generated code, explicit dependencies, and no runtime container magic.
+template: splash
+hero:
+  tagline: Go-native application development. Compile-time wiring. Deterministic Go. No runtime magic.
+  actions:
+    - text: Get started
+      link: /framework/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: Explore Spice Agent
+      link: /agent/
+      icon: right-arrow
+      variant: minimal
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import SpiceCode from "@components/SpiceCode.astro";
+import EcosystemMap from "@components/EcosystemMap.astro";
+
+<section className="landing-section landing-section--lead">
+  <p className="landing-kicker">Valid Go in. Ordinary Go out.</p>
+  <h2>A framework that gets out of the runtime.</h2>
+  <p>
+    Spice analyzes typed Go declarations before your application runs, validates the
+    graph, and commits direct construction code you can read, test, debug, and ship.
+  </p>
+</section>
+
+<SpiceCode repository="petclinic" source="main.go" title="petclinic/main.go" view="compare" />
+
+<section className="landing-section">
+  <p className="landing-kicker">One platform, explicit boundaries</p>
+  <div className="product-lanes">
+    <article>
+      <span>01</span>
+      <h2><a href="/framework/">Framework</a></h2>
+      <p>Public runtime contracts, modular application features, and valid-Go declarations.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <h2><a href="/toolchain/">Toolchain</a></h2>
+      <p>A standalone compiler, deterministic generator, CLI, and language server.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <h2><a href="/agent/">Spice Agent</a></h2>
+      <p>An experimental deterministic agent kernel built from the same compiled extension graph.</p>
+    </article>
+  </div>
+</section>
+
+<section className="landing-section">
+  <p className="landing-kicker">Opt in to integrations</p>
+  <h2>Choose only the infrastructure your application owns.</h2>
+  <p>Each starter is independently versioned, lifecycle-aware, and explicit in your module graph.</p>
+  <EcosystemMap />
+</section>
+
+<section className="landing-section example-lanes">
+  <article>
+    <p className="landing-kicker">Reference application</p>
+    <h2><a href="/examples/petclinic/">Petclinic</a></h2>
+    <p>A familiar domain proving external-consumer ergonomics, web flows, validation, views, and SQL starters.</p>
+  </article>
+  <article>
+    <p className="landing-kicker">Production-shaped proof</p>
+    <h2><a href="/examples/commerce/">Commerce</a></h2>
+    <p>A modular commerce boundary with transactions, mail, observability, and deterministic generated composition.</p>
+  </article>
+</section>
+
+<aside className="maturity-note">
+  <strong>Preview software, honest contracts.</strong>
+  <span>This portal is one reviewed compatible ecosystem snapshot. Repositories version independently and every page identifies its exact source commit.</span>
+</aside>
+
+<nav className="landing-project-links" aria-label="Project information">
+  <a href="/project/contributing/">Contribute</a>
+  <a href="/project/security/">Security</a>
+  <a href="/agent/implementation/">Project status</a>
+  <a href="https://github.com/spice-framework">GitHub organization</a>
+</nav>
