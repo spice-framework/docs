@@ -9,6 +9,8 @@ terraform {
   }
 
   backend "azurerm" {
+    subscription_id      = "cc2eeadc-ef37-4549-92f1-585b0a936274"
+    tenant_id            = "abfcbee8-658f-4ab3-97f5-9b357e0f8cda"
     resource_group_name  = "ol-shared-foundation"
     storage_account_name = "olsharedtfstate"
     container_name       = "workspaces"

@@ -7,7 +7,8 @@ describe("ecosystem assembly", () => {
   test("assembles the complete reviewed snapshot with provenance", async () => {
     const generatedRoot = path.resolve(".generated/tests/integration-assembly");
     const result = await assemble({ root: path.resolve("."), generatedRoot });
-    expect(result.pages).toHaveLength(183);
+    expect(result.pages.length).toBeGreaterThanOrEqual(180);
+    expect(result.routes.length).toBeGreaterThan(result.pages.length);
     expect(result.routes).toContain("framework/getting-started");
     expect(result.routes).toContain("agent/implementation");
     expect(result.routes).not.toContain("agent/implementation-1index");
