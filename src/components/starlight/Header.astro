@@ -40,6 +40,14 @@ import Search from "./Search.astro";
   .spice-header__brand {
     min-width: 0;
   }
+  .spice-header__brand :global(.site-title) {
+    gap: 0;
+  }
+  .spice-header__brand :global(.site-title img) {
+    height: 1.85rem;
+    max-width: 8.25rem;
+    width: auto;
+  }
   .spice-header__actions {
     gap: 0.65rem;
   }
@@ -52,6 +60,10 @@ import Search from "./Search.astro";
     }
     .spice-header__actions {
       display: none;
+    }
+    .spice-header__brand :global(.site-title img) {
+      height: 1.5rem;
+      max-width: 6.5rem;
     }
   }
 </style>

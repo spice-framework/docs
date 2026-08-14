@@ -3,6 +3,16 @@ header.header {
   border-bottom: 1px solid var(--spice-border);
 }
 
+.site-title {
+  gap: 0;
+}
+
+.site-title img {
+  height: 1.85rem;
+  max-width: 8.25rem;
+  width: auto;
+}
+
 .sidebar-pane {
   border-inline-end-color: var(--spice-border);
 }
@@ -49,17 +59,17 @@ header.header {
 }
 
 .hero .actions a:first-child {
-  background: #a83d08;
-  border-color: #a83d08;
+  background: var(--spice-accent-1);
+  border-color: var(--spice-accent-1);
   color: #ffffff;
 }
 
 .sl-markdown-content a code {
-  color: #9d3e0e;
+  color: #c40112;
 }
 
 :root[data-theme="dark"] .sl-markdown-content a code {
-  color: #ffc28f;
+  color: #ff9aa0;
 }
 
 @media (max-width: 50rem) {

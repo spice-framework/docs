@@ -27,6 +27,13 @@ export default defineConfig({
       title: "Spice",
       description:
         "A Go-native application platform with compile-time validation and deterministic generated Go.",
+      logo: {
+        light: "./src/assets/brand/spice-logo-horizontal.svg",
+        dark: "./src/assets/brand/spice-logo-horizontal-white.svg",
+        alt: "",
+        replacesTitle: true,
+      },
+      favicon: "/favicon.svg",
       social: [
         {
           icon: "github",
